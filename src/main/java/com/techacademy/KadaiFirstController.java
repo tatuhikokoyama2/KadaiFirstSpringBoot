@@ -2,6 +2,7 @@ package com.techacademy;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +11,50 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class KadaiFirstController {
 
-    @GetMapping("/dayofweek/{指定日}")
-    public String dispDayOfWeek() {
-        String week = LocalDateTime.now().format( DateTimeFormatter.ofPattern("yyyy:MM:dd(E)"));
+    @GetMapping("/dayofweek/{ymd}")
+    public String dispDayOfWeek(@PathVariable String ymd) {
+        Calendar calendar = Calendar.getInstance();
+
+        //取得した指定日の変数を年、月、日に分割する
+        int year = Integer.parseInt(ymd.substring(0,4));
+
+        int month = Integer.parseInt(ymd.substring(4,6));
+
+        int day = Integer.parseInt(ymd.substring(6,8));
+
+        //取得した日をカレンダーにセットする
+        calendar.set(year,month,day);
+
+        int weeknum = calendar.get(Calendar.DAY_OF_WEEK);
+
+        String week = null;
+
+        //取得した日の曜日に合った曜日を呼び出す
+        switch(weeknum) {
+        case Calendar.MONDAY:
+            week = "Monday";
+            break;
+        case Calendar.TUESDAY:
+            week = "Tuesday";
+            break;
+        case Calendar.WEDNESDAY:
+            week = "Wednesday";
+            break;
+        case Calendar.THURSDAY:
+            week = "Thursday";
+            break;
+        case Calendar.FRIDAY:
+            week = "Friday";
+            break;
+        case Calendar.SATURDAY:
+            week = "Saturday";
+            break;
+        case Calendar.SUNDAY:
+            week = "Sunday";
+            break;
+
+            default: break;
+        }
 
         return "指定日:" + week;
     }
