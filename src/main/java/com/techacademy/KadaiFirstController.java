@@ -1,5 +1,7 @@
 package com.techacademy;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -23,33 +25,37 @@ public class KadaiFirstController {
         int day = Integer.parseInt(ymd.substring(6,8));
 
         //取得した日をカレンダーにセットする//
-        calendar.set(year,month,day);
+        //calendar.set(year,month,day);
 
-        int weeknum = calendar.get(Calendar.DAY_OF_WEEK);
+        LocalDate date = LocalDate.of(year, month, day);
+
+        DayOfWeek Weeknum = date.getDayOfWeek();
+
+        //int weeknum = calendar.get(Calendar.DAY_OF_WEEK);
 
         String week = null;
 
         //取得した日の曜日に合った曜日を呼び出す
-        switch(weeknum) {
-        case Calendar.MONDAY:
+        switch(Weeknum.getValue()) {
+        case 1:
             week = "Monday";
             break;
-        case Calendar.TUESDAY:
+        case 2:
             week = "Tuesday";
             break;
-        case Calendar.WEDNESDAY:
+        case 3:
             week = "Wednesday";
             break;
-        case Calendar.THURSDAY:
+        case 4:
             week = "Thursday";
             break;
-        case Calendar.FRIDAY:
+        case 5:
             week = "Friday";
             break;
-        case Calendar.SATURDAY:
+        case 6:
             week = "Saturday";
             break;
-        case Calendar.SUNDAY:
+        case 7:
             week = "Sunday";
             break;
 
