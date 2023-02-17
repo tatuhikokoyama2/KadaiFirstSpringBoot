@@ -22,7 +22,7 @@ public class KadaiFirstController {
 
         int day = Integer.parseInt(ymd.substring(6,8));
 
-        //取得した日をカレンダーにセットする
+        //取得した日をカレンダーにセットする//
         calendar.set(year,month,day);
 
         int weeknum = calendar.get(Calendar.DAY_OF_WEEK);
