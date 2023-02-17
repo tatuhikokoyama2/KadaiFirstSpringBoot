@@ -15,7 +15,7 @@ public class KadaiFirstController {
 
     @GetMapping("/dayofweek/{ymd}")
     public String dispDayOfWeek(@PathVariable String ymd) {
-        Calendar calendar = Calendar.getInstance();
+        //Calendar calendar = Calendar.getInstance();
 
         //取得した指定日の変数を年、月、日に分割する
         int year = Integer.parseInt(ymd.substring(0,4));
